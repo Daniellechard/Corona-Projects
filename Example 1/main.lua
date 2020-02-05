@@ -62,6 +62,7 @@ raindrop.x = 100--display.contentCenterX
 raindrop.y = 100--display.contentCenterY
 raindrop.fill.blendMode = "multiply"
 
+--tried to make an array
 local myArray ={}
 
 myArray[0] = 6
@@ -77,8 +78,11 @@ print(myArray[3])
 local function gameLoop()
 
    circ.y  = circ.y + speed
+   --tried to make the size change, also tried circ.size
    circ.z = circ.z + 100
+   --trying to make circ only display while on the screen
    --while (circ.y > display.contentHeight dislay.newCircle(100,100,10))
+   --trying to make the size change
    if(circ.y > display.contentHeight) or circ.y< 0 then
       size = size * -1
   end
