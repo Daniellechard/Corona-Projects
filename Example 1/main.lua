@@ -11,6 +11,7 @@
 local gameLoopTimer
 local speed = 10
 Shape = {area = 0}
+local size = 1
 
 -- Base class method new
 
@@ -42,16 +43,37 @@ background.y = display.contentCenterY
 
 
 local paint = {.57,.5,1}
-local circ = display.newCircle(100,100,10)
+local circ = display.newCircle(100,100,50)
 circ.fill = paint;
 circ.x = 100
 circ.y = 100
-circ.z = 10
 
-local circ2 = display.newCircle(100,100,10)
+local circ2 = display.newCircle(100,100,50)
 circ2.fill = paint;
 circ2.x = 100
 circ2.y = 100
+
+local circ3 = display.newCircle(100,100,50)
+circ3.fill = paint;
+circ3.x = 100
+circ3.y = 100
+
+local circ4 = display.newCircle(100,100,50)
+circ4.fill = paint;
+circ4.x = 100
+circ4.y = 100
+
+local circ5 = display.newCircle(100,100,50)
+circ5.fill = paint;
+circ5.x = 100
+circ5.y = 100
+
+local circ6 = display.newCircle(100,100,50)
+circ6.fill = paint;
+circ6.x = 100
+circ6.y = 100
+
+
 
 local myArray ={circ,circ2}
 
@@ -90,7 +112,7 @@ local function gameLoop()
         myArray[i].width = myArray[i].width - size
         myArray[i].height = myArray[i].height - size
      end
-end
+
      -- reset the circles when they hit the bottom
      if myArray[i].y >= display.contentHeight then
 
@@ -102,6 +124,7 @@ end
 
 
     end
+  end
 
    --[[circ.y  = circ.y + speed
    --tried to make the size change, also tried circ.size
