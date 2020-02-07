@@ -8,14 +8,22 @@
 
 -- Meta class
 
+--creates the timer variable
 local gameLoopTimer
+--creates the speed variable and sets it to 10
 local speed = 10
+--???
 Shape = {area = 0}
+--creates the size variable and sets it to 1
 local size = 1
+
+local xLoc = math.random(0,320)
+local yLoc = math.random(0,480)
+local diamSize= math.random(1,50)
 
 -- Base class method new
 
-
+--not sure what this does
 function Shape:new (o,side)
    o = o or {}
    setmetatable(o, self)
@@ -34,58 +42,76 @@ end
 -- Creating an object
 myshape = Shape:new(nil,10)
 
+--???
 myshape:printArea()
 
+--this makes the picture show up and specifies its size
 local background = display.newImageRect( "background.jpg",800, 450 )
 
+--centers the background
 background.x = display.contentCenterX
 background.y = display.contentCenterY
 
+--making my objects white to look like snow
+local paint = {1,1,1}
 
-local paint = {.57,.5,1}
+--creating each object for my array
 local circ = display.newCircle(100,100,50)
 circ.fill = paint;
-circ.x = 100
-circ.y = 100
+circ.x = xLoc
+circ.y = yLoc
 
 local circ2 = display.newCircle(100,100,50)
 circ2.fill = paint;
-circ2.x = 100
-circ2.y = 100
+circ2.x = xLoc
+circ2.y = yLoc
 
 local circ3 = display.newCircle(100,100,50)
 circ3.fill = paint;
-circ3.x = 100
-circ3.y = 100
+circ3.x = xLoc
+circ3.y = yLoc
 
 local circ4 = display.newCircle(100,100,50)
 circ4.fill = paint;
-circ4.x = 100
-circ4.y = 100
+circ4.x = xLoc
+circ4.y = yLoc
 
 local circ5 = display.newCircle(100,100,50)
 circ5.fill = paint;
-circ5.x = 100
-circ5.y = 100
+circ5.x = xLoc
+circ5.y = yLoc
 
 local circ6 = display.newCircle(100,100,50)
 circ6.fill = paint;
-circ6.x = 100
-circ6.y = 100
+circ6.x = xLoc
+circ6.y = yLoc
 
+local circ7 = display.newCircle(100,100,50)
+circ7.fill = paint;
+circ7.x = xLoc
+circ7.y = yLoc
 
+local circ8 = display.newCircle(100,100,50)
+circ8.fill = paint;
+circ8.x = xLoc
+circ8.y = yLoc
 
-local myArray ={circ,circ2}
+local circ9 = display.newCircle(100,100,50)
+circ9.fill = paint;
+circ9.x = xLoc
+circ9.y = yLoc
 
---local rect = display.newRect(200,100,59,40)
---rect.fill = {.45}
+local circ10 = display.newCircle(100,100,50)
+circ10.fill = paint;
+circ10.x = xLoc
+circ10.y = yLoc
 
---[[local raindrop = display.newImageRect("raindrop.png", 100,100)
-raindrop.x = 100--display.contentCenterX
-raindrop.y = 100--display.contentCenterY
-raindrop.fill.blendMode = "multiply"
+--add all 10 objects to my myArray
+local myArray ={circ,circ2,circ3,circ4,circ5,circ6,circ7,circ8,circ9,circ10}
+
 
 --tried to make an array
+--[[
 local myArray ={}
 
 myArray[0] = 6
@@ -99,12 +125,20 @@ print(myArray[3])
 
 
 local function gameLoop()
-
+--[[
+for every object in my array ,#myArray?, iterate + 1?
+]]
   for i=1,#myArray,1 do
 
-
+--the y of my array objects = the y of themselves + the speed variable
      myArray[i].y  = myArray[i].y + speed
      -- make sure the size of the circles don't get below zero
+
+     --[[if the width of the objects in my array are less than 0 or the height of the
+     objects in my array are less than 0
+     then the width of my array objects = 0 and the height of my array objects = 0
+     otherwise the width of my array object = their width - size and their height - size
+     ]]--
      if(myArray[i].width < 0 or myArray[i].height < 0) then
         myArray[i].width = 0
          myArray[i].height = 0
@@ -114,15 +148,25 @@ local function gameLoop()
      end
 
      -- reset the circles when they hit the bottom
+
+     --[[
+     if the y of my array objects is more than or equal to the contentHeight
+     then
+     the y of my array objects = a random number between 0 and 480 which is the
+     height of the screen
+     and the height of my array objects = 50
+     and the width of my array objects = 50
+     ???
+     the x of my array objects = a random number between 0 and 320 which is
+     the width of the screen.
+     ]]--
      if myArray[i].y >= display.contentHeight then
 
-       myArray[i].y = 100;
+       myArray[i].y = math.random(0, 480);
        myArray[i].height = 50
        myArray[i].width = 50
        print("height " .. myArray[i].width)
-       myArray[i].x = math.random(100,200)
-
-
+       myArray[i].x = math.random(0,320)
     end
   end
 
@@ -137,5 +181,6 @@ local function gameLoop()
   end]]--
 end
 
-
+---creates the timer using the gameLoopTimer created above and adds a time performWithDelay
+--not sure what the 3 inputs in the () mean
 gameLoopTimer = timer.performWithDelay( 100, gameLoop, 0 )
