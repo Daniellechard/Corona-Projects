@@ -53,6 +53,7 @@ circ2.fill = paint;
 circ2.x = 100
 circ2.y = 100
 
+local myArray ={circ,circ2}
 
 --local rect = display.newRect(200,100,59,40)
 --rect.fill = {.45}
@@ -77,7 +78,32 @@ print(myArray[3])
 
 local function gameLoop()
 
-   circ.y  = circ.y + speed
+  for i=1,#myArray,1 do
+
+
+     myArray[i].y  = myArray[i].y + speed
+     -- make sure the size of the circles don't get below zero
+     if(myArray[i].width < 0 or myArray[i].height < 0) then
+        myArray[i].width = 0
+         myArray[i].height = 0
+     else
+        myArray[i].width = myArray[i].width - size
+        myArray[i].height = myArray[i].height - size
+     end
+end
+     -- reset the circles when they hit the bottom
+     if myArray[i].y >= display.contentHeight then
+
+       myArray[i].y = 100;
+       myArray[i].height = 50
+       myArray[i].width = 50
+       print("height " .. myArray[i].width)
+       myArray[i].x = math.random(100,200)
+
+
+    end
+
+   --[[circ.y  = circ.y + speed
    --tried to make the size change, also tried circ.size
    circ.z = circ.z + 100
    --trying to make circ only display while on the screen
@@ -85,7 +111,8 @@ local function gameLoop()
    --trying to make the size change
    if(circ.y > display.contentHeight) or circ.y< 0 then
       size = size * -1
-  end
+  end]]--
 end
+
 
 gameLoopTimer = timer.performWithDelay( 100, gameLoop, 0 )
